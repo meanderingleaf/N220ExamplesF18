@@ -1,0 +1,43 @@
+<html>
+    <head>
+    </head>
+    <body>
+
+        <div id="tamagotchi">
+            <div class="name"></div>
+            <div class="health"></div>
+            <div class="events"></div>
+        </div>
+
+        <script>
+            
+            class LivingBeing {
+                constructor(health) {
+                    this.health = health;
+                }
+            }
+
+            class Tamagotchi extends LivingBeing {
+                constructor(componentRef) {
+                    super(4);
+                    this.el = document.querySelector(componentRef);
+                    this.healthEl = this.el.querySelector(".health");
+
+                    setInterval(this.update.bind(this), 1000);
+                }
+
+                update() {
+                    if(this.health > 1) {
+                        this.health --;
+                        this.healthEl.innerHTML = this.health;
+                    } else {
+                        this.healthEl.innerHTML = "Your tamagotchi died.";
+                    }
+                }
+            }
+
+            var mrT = new Tamagotchi("#tamagotchi");
+
+        </script>
+    </body>
+</html>

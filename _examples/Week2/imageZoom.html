@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <style>
+            #container {
+                width: 400px;
+                height: 300px;
+                overflow: hidden;
+            }
+
+            .image {
+                position: relative;
+            }
+        </style>
+    </head>
+    <body>
+
+        <div id="container">
+            <img src="kittens.jpg" class="image" />
+        </div>
+
+        <div id="container2">
+                <img src="kittens.jpg" class="image" />
+        </div>
+
+        <script src="imageZoom.js"></script>
+        <script>
+            var myZoom = new ImageZoom("#container");
+            var myZoom2 = new ImageZoom("#container2");
+        </script>
+    </body>
+</html>
