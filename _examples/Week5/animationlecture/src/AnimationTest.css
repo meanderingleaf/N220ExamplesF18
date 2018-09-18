@@ -1,0 +1,21 @@
+.glow {
+    animation-name: glowIn;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes glowIn {
+    from { background-color: #000; }
+    to { background-color: rgb(250, 250, 0) }
+}
+
+.dim {
+    animation-name: glowOut;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes glowOut {
+    from { background-color: rgb(250, 250, 0) }
+    to { background-color: #000; }
+}
