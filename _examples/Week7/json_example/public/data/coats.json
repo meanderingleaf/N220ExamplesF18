@@ -1,4 +1,8 @@
 {
     "wanted": [ "Fighter pilot", "assassins creed coat", "trench" ],
-    "owned": [ "hoodie", "peacoat", "cat" ]
+    "owned": [ "hoodie", "peacoat", "cat" ],
+    "stuff": [
+        { "name": "whatever", "age": 12, "cats": []  },
+        { "name": "whateverrrr", "age": 20, "cats": [] }
+    ]
 }
