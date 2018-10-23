@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Map from "./Map.js";
 import PointStore from "./PointStore.js";
+import Popup from "./Popup";
 
 class App extends Component {
 
@@ -25,9 +25,16 @@ class App extends Component {
     }
   }
 
+  pointsUpdated() {
+    this.setState({
+      points: PointStore.points
+    })
+  }
+
   render() {
     return (
       <div className="App">
+        <Popup visible="false" />
         <Map points={this.state.points} />
       </div>
     );

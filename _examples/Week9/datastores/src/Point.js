@@ -2,8 +2,19 @@ import React, {Component} from "react";
 import PointStore from "./PointStore";
 
 class Point extends Component {
+
     render() {
-        return(<div onClick={() => { this.handleClick() }}>
+
+        var styleObj = {
+            width: "20px",
+            height: "20px",
+            backgroundColor: "#990000",
+            position: "absolute",
+            left: this.props.location.x,
+            top: this.props.location.y
+        }
+
+        return(<div onClick={() => { this.handleClick() }} style={styleObj}>
             {this.props.location.x}
         </div>)
     }
