@@ -1,0 +1,9 @@
+{
+    "clothes": [
+        { "type": "shirt", "size": "L", "color": "red", "cleanliness": 0.7 },
+        { "type": "pants", "size": "34", "color": "blue", "cleanliness": 0.3 },
+        { "type": "socks", "size": "L", "color": "black", "cleanliness": 1 },
+        { "type": "shirt", "size": "M", "color": "green", "cleanliness": 0.55 },
+        { "type": "pants", "size": "36", "color": "khaki", "cleanliness": 0.9 }
+    ]
+}

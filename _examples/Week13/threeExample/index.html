@@ -1,0 +1,42 @@
+<html>
+    <head></head>
+    <body>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/98/three.min.js"></script>
+        <script>
+            
+            //draws images to the page
+            var renderer = new THREE.WebGLRenderer();
+            renderer.setSize(1280,800);
+            document.body.appendChild( renderer.domElement );
+
+            //holds a list of all the objects in a space
+            var scene = new THREE.Scene();
+
+            //our 'view' into the world - the camera
+            var camera = new THREE.PerspectiveCamera(75, 1280/800, 1, 10000);
+            camera.position.z = 75;
+                //FOV, ???, near clipping plane, far clipping
+            scene.add(camera);
+
+            //make a sphere.
+                //first, make the geometry
+            var geometry = new THREE.SphereGeometry(20,20,50); //POINTS/MATH OF THE OBJECT
+            var material = new THREE.MeshNormalMaterial(); //SKIN/COLOR OF THE OBJECT
+            var mesh = new THREE.Mesh(geometry, material); //Mashes the two togetehr into an actual object.
+            
+            //put the sphere into the scene
+            scene.add(mesh);
+
+            //set up our render loop
+            requestAnimationFrame( tick );
+            function tick() {
+
+                renderer.render( scene, camera );
+
+                requestAnimationFrame(tick);
+            }
+
+        </script>
+    </body>
+</html>
