@@ -1,5 +1,3 @@
-
-
 class Grid extends HTMLDivElement {
     constructor() {
         super();
@@ -12,43 +10,48 @@ class Grid extends HTMLDivElement {
 
         for(var y = 0; y < this.cells.length; y++ ) {
             for(var x = 0; x < this.cells[0].length; x++) {
-                var newBox = new Box(this.cells[y][x], this.cellClicked.bind(this));
+                var newBox = new Box(this.cells[y][x]);
                 this.appendChild(newBox);
             }
         }
     }
-
-    cellClicked() {
-
-    }
 }
 
 class Box extends HTMLDivElement {
-    constructor(initialValue,clickCallback) {
+    constructor(initialValue) {
         super();
         this.innerHTML = initialValue;
-        this.clickCallback = clickCallback;
         this.addEventListener("click", this.handleClick.bind(this) );
     }
 
     handleClick(event) {
-        this.clickCallback();
-        GameController.cellClicked()
-        this.innerHTML = GameController.playerTurn;
+        gameController.cellClicked();
+        this.innerHTML = gameController.playerTurn;
     }
 }
 
-const GameController = {
-    cellClicked: function() {
-        console.log(this);
+class GameController {
+
+    constructor() {
+        this.curStep = 0;
+        this.playerTurn = "X";
     }
-};
+
+    cellClicked() {
+        if(this.curStep%2) {
+            this.playerTurn = "X";
+        } else {
+            this.playerTurn = "O";
+        }
+
+        this.curStep++
+    }
+}
+
+let gameController =  new GameController();
+
+
 
 customElements.define('game-box', Box, { extends: "div"} );
 customElements.define('game-grid', Grid, { extends: "div"} );
-
-var myGrid = new Grid();
-document.querySelector("#container").appendChild(myGrid);
-
-
 
