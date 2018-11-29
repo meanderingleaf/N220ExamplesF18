@@ -2,56 +2,70 @@ class Grid extends HTMLDivElement {
     constructor() {
         super();
 
-        this.cells = [
-            [0,0,0],
-            [0,4,0],
-            [0,0,0]
-        ]
+        for(var y = 0; y < gameController.cells.length; y++ ) {
 
-        for(var y = 0; y < this.cells.length; y++ ) {
-            for(var x = 0; x < this.cells[0].length; x++) {
-                var newBox = new Box(this.cells[y][x]);
-                this.appendChild(newBox);
+            var row = document.createElement("div");
+            row.style.display = "flex";
+            this.appendChild(row);
+
+            for(var x = 0; x < gameController.cells[0].length; x++) {
+                var newBox = new Box(gameController.cells[y][x],x,y);
+                row.appendChild(newBox);
             }
         }
     }
 }
 
 class Box extends HTMLDivElement {
-    constructor(initialValue) {
+    constructor(initialValue,xPos,yPos) {
         super();
+        this.xPos = xPos;
+        this.yPos = yPos;
         this.innerHTML = initialValue;
         this.addEventListener("click", this.handleClick.bind(this) );
     }
 
     handleClick(event) {
-        gameController.cellClicked();
-        this.innerHTML = gameController.playerTurn;
+        gameController.cellClicked(this.xPos, this.yPos);
+        this.innerHTML = gameController.currentPlayer;
     }
 }
 
 class GameController {
-
     constructor() {
-        this.curStep = 0;
-        this.playerTurn = "X";
+
+        this.cells = [
+            [0,0,0],
+            [0,0,0],
+            [0,0,0]
+        ]
+
+        this.currentTurn = 0;
+        this.currentPlayer = "X";
     }
 
-    cellClicked() {
-        if(this.curStep%2) {
-            this.playerTurn = "X";
+    cellClicked(xPos,yPos) {
+        //step forward in turns
+        this.currentTurn ++;
+
+        if(this.currentTurn % 2 == 0) {
+            this.currentPlayer = "X"
         } else {
-            this.playerTurn = "O";
+            this.currentPlayer = "O";
         }
 
-        this.curStep++
+        this.cells[yPos][xPos] =  this.currentPlayer; 
+
+        this.checkWin();
+    }
+
+    checkWin() {
+        //check for a win
+        //tell me via console.log if there is.
     }
 }
-
-let gameController =  new GameController();
-
+var gameController = new GameController();
 
 
 customElements.define('game-box', Box, { extends: "div"} );
 customElements.define('game-grid', Grid, { extends: "div"} );
-
